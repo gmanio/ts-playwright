@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "simple web scrapper",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test" : "playwright test --debug"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gmanio/ts-playwright.git"
