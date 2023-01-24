@@ -23,7 +23,7 @@ test("sample page crawler", async ({ page }) => {
   );
 
   await hitGalleryTab?.click();
-  
+
   const contentList = await page.$$(
     `.list_wrapper > .widget_bottom > ul.swiper-slide-active > li`
   );
@@ -33,9 +33,5 @@ test("sample page crawler", async ({ page }) => {
     console.log(text && text.trim());
   }
 
-  // const count = await contentList?.asElement();
-  const count = contentList.length;
-
-  // console.log(await contentList.length);
   // expect(count).toBe(5);
 });
