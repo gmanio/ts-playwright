@@ -1,13 +1,10 @@
-// https://m.ruliweb.com
-
 import { test, expect } from "@playwright/test";
 
-const delay = (time) => new Promise((res) => setTimeout(res, time));
+const delay = (time: number) => new Promise((res) => setTimeout(res, time));
 
 test("sample page crawler", async ({ page }) => {
-  const promiseResponse = await page.goto("https://m.ruliweb.com");
+  await page.goto("https://m.ruliweb.com");
 
-  // const root = await page.locator('#list_read_bottom').click();
   const hitGalleryTabIndex = 1;
   const humorBestTabIndex = 3;
   const rightBestTabIndex = 2;
@@ -22,16 +19,29 @@ test("sample page crawler", async ({ page }) => {
     `#list_read_bottom .tab_${rightBestTabIndex}`
   );
 
-  await hitGalleryTab?.click();
+  const tabList = [humorBestTab, hitGalleryTab, rightBestTab];
+  for (const tab of tabList) {
+    await tab?.click();
 
-  const contentList = await page.$$(
-    `.list_wrapper > .widget_bottom > ul.swiper-slide-active > li`
-  );
+    const contentList = await page.$$(
+      `.list_wrapper > .widget_bottom > ul.swiper-slide-active > li`
+    );
 
-  for (const iterator of contentList) {
-    const text = await iterator.textContent();
-    console.log(text && text.trim());
+    for (const [index, content] of contentList.entries()) {
+      if (index == 0) {
+        const title = await content.innerText();
+        console.log(
+          `========================================================================`
+        );
+      } else {
+        // const contentLink = await content.
+        const contentTitle = await content.innerText();
+        const anchorRef = await content.$("a");
+        const link = await anchorRef?.getAttribute("href");
+        const isBold = await content.$("strong");
+
+        console.log(link);
+      }
+    }
   }
-
-  // expect(count).toBe(5);
 });

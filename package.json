@@ -4,9 +4,9 @@
   "description": "simple web scrapper",
   "main": "index.js",
   "scripts": {
-    "test" : "playwright test",
-    "crawler" : "playwright test crawler/",
-    "debug" : "playwright test crawler/ --debug"
+    "test": "playwright test",
+    "crawler": "playwright test crawler/",
+    "debug": "playwright test crawler/ --debug"
   },
   "repository": {
     "type": "git",
